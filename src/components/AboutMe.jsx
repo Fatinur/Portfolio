@@ -24,7 +24,7 @@ const AboutMe = () => {
                  a frontend developer who enjoys building modern, interactive websites and bringing designs to life through code.<br/> I’m particularly passionate about creating smooth and engaging animations, and I have experience using tools like React, JavaScript, Tailwind CSS, and CSS to craft responsive and visually appealing interfaces. I’m especially comfortable working with animation libraries like GSAP, which I often use to create dynamic user experiences—something you can see throughout my portfolio.<br/> I’m actively looking for opportunities including internships, freelance work, or entry-level frontend roles where I can contribute, grow, and gain real-world experience. I strongly believe in persistence and continuous learning, and <br/>as Will Smith’s character says in The Pursuit of Happyness, “If you want something, go get it. Period.”
             </div>
             <div className=' h-[10vh] w-full flex justify-center items-center'>
-                 <a href="/public/Blue and White Clean and Professional Resume.pdf" target="_blank" rel="noopener noreferrer" className='border-2 border-white w-[10vw] rounded-lg h-full hover:text-black hover:bg-white'>   <button className=' w-[10vw] rounded-lg h-full hover:text-black hover:bg-white' >CV</button></a>
+                 <a href="/public/resume.pdf" target="_blank" rel="noopener noreferrer" className='border-2 border-white w-[10vw] rounded-lg h-full hover:text-black hover:bg-white'>   <button className=' w-[10vw] rounded-lg h-full hover:text-black hover:bg-white' >CV</button></a>
             </div>
 
            </div>
