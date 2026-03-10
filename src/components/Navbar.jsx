@@ -74,7 +74,7 @@ const Navbar = ({refs}) => {
             >
               <button className="py-2 transition trail-text z-70 text-transparent" onClick={() => scrollToSection(refs.projectsRef)} style={{ WebkitTextStroke: "1px white" }}>Projects</button>
               <button className="py-2 transition trail-text z-70 text-transparent" onClick={() => scrollToSection(refs.contactRef)} style={{ WebkitTextStroke: "1px white" }}>About</button>
-              <a href="/public/resume.pdf" target="_blank" rel="noopener noreferrer" className="py-2 transition trail-text z-70 text-transparent" style={{ WebkitTextStroke: "1px white" }}>CV</a>
+              <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="py-2 transition trail-text z-70 text-transparent" style={{ WebkitTextStroke: "1px white" }}>CV</a>
             </div>
       </div>
     </>
