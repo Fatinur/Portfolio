@@ -1,3 +1,4 @@
+```jsx
 import React, { useRef, useEffect, useState } from "react";
 
 import preview1 from "../assets/previewHeadphone.mp4";
@@ -5,153 +6,175 @@ import headphone from "../assets/audira.png";
 import cookie from "../assets/cookie.png";
 import preview2 from "../assets/previewCookie.mp4";
 
+// RAJSHAHI RENTALS ASSETS:
+// When ready, import your screenshot and video here.
+// Example:
+// import rajshahiRentals from "../assets/rajshahi-rentals.png";
+// import preview3 from "../assets/previewRajshahiRentals.mp4";
 
 const SecondVh = () => {
   const [isDesktop, setIsDesktop] = useState(false);
 
   const videoRef = useRef(null);
   const videoRef2 = useRef(null);
+  const videoRef3 = useRef(null);
 
   useEffect(() => {
     const checkWidth = () => {
       setIsDesktop(window.innerWidth > 768);
     };
 
-    checkWidth(); // run on mount
+    checkWidth();
     window.addEventListener("resize", checkWidth);
 
     return () => window.removeEventListener("resize", checkWidth);
   }, []);
 
+  const projects = [
+    {
+      name: "AUDIRA",
+      description:
+        "A premium headphone storefront concept featuring immersive product visuals, smooth interactions, and responsive layouts to help brands create a strong first impression.",
+      image: headphone,
+      video: preview1,
+      videoRef: videoRef,
+      url: "https://audira-nine-eta.vercel.app/",
+      imageAlt: "Audira headphone storefront",
+      imageFirst: true,
+    },
+    {
+      name: "COOKIE.CO",
+      description:
+        "A modern cookie shop concept combining warm branding, appealing product presentation, and intuitive navigation to help small businesses build a memorable online presence.",
+      image: cookie,
+      video: preview2,
+      videoRef: videoRef2,
+      url: "https://cookie-co.vercel.app/",
+      imageAlt: "Cookie.co website",
+      imageFirst: false,
+    },
+
+    // RAJSHAHI RENTALS:
+    // Add image and video imports above, then uncomment this project.
+    // {
+    //   name: "RAJSHAHI RENTALS",
+    //   description:
+    //     "A rental platform built for Rajshahi, helping people discover rooms, flats, and hostels through property filters and a streamlined listing experience.",
+    //   image: rajshahiRentals,
+    //   video: preview3,
+    //   videoRef: videoRef3,
+    //   url: "https://rajshahi-rentals.vercel.app/",
+    //   imageAlt: "Rajshahi Rentals website",
+    //   imageFirst: true,
+    // },
+  ];
+
+  const renderPreview = (project) => (
+    <div
+      className="w-full md:w-[42%] h-full min-h-0 relative group overflow-hidden opacity-70 hover:opacity-100 transition-opacity duration-300 trail-text rounded-2xl"
+      onMouseEnter={() => {
+        if (isDesktop) project.videoRef.current?.play();
+      }}
+      onMouseLeave={() => {
+        if (isDesktop) {
+          project.videoRef.current?.pause();
+          if (project.videoRef.current) {
+            project.videoRef.current.currentTime = 0;
+          }
+        }
+      }}
+    >
+      <a
+        href={project.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={`Visit ${project.name} website`}
+        className="block w-full h-full"
+      >
+        <img
+          src={project.image}
+          alt={project.imageAlt}
+          className="w-full h-full object-cover transition-opacity duration-300 group-hover:opacity-0"
+        />
+
+        {isDesktop && (
+          <video
+            ref={project.videoRef}
+            src={project.video}
+            muted
+            loop
+            playsInline
+            preload="none"
+            className="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+          />
+        )}
+
+        <span className="absolute bottom-3 right-3 z-10 rounded-full bg-black/70 px-3 py-1 text-xs text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          VIEW PROJECT ↗
+        </span>
+      </a>
+    </div>
+  );
+
+  const renderDescription = (project) => (
+    <div className="w-full md:w-[54%] h-full min-h-0 flex flex-col justify-center gap-2 md:gap-3 trail-text py-1">
+      <h3 className="text-sm md:text-base lg:text-lg tracking-[0.2em] font-semibold">
+        {project.name}
+      </h3>
+
+      <p className="text-xs md:text-sm lg:text-base leading-relaxed text-justify text-white/80">
+        {project.description}
+      </p>
+
+      <a
+        href={project.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="w-fit text-xs md:text-sm tracking-wider underline underline-offset-4 hover:text-white/60 transition-colors"
+      >
+        VIEW PROJECT ↗
+      </a>
+    </div>
+  );
+
   return (
-    <div className="h-screen flex items-center justify-center overflow-hidden">
-      <div className="text-white h-[90vh] w-[90vw] flex flex-col items-center justify-center gap-[2vh] md:gap-[4vh] lg:gap-[5vh]">
-        
-        <div className="h-[10%]">
-          <div
-            className="text-transparent trail-text text-4xl md:font-bold transform translate-y-1.5"
+    <section className="h-screen w-full flex items-center justify-center overflow-hidden">
+      <div className="text-white h-[94vh] w-[90vw] flex flex-col items-center min-h-0">
+        {/* SECTION HEADING */}
+        <div className="h-[10%] shrink-0 flex items-center justify-center">
+          <h2
+            className="text-transparent trail-text text-3xl md:text-4xl font-bold"
             style={{ WebkitTextStroke: "1px white" }}
           >
             PROJECTS
-          </div>
+          </h2>
         </div>
 
-        <div className="h-full w-full flex flex-col lg:gap-[1vh] md:gap-[2vh] gap-[3vh] items-center justify-center">
-          
-          {/* ===== FIRST PROJECT ===== */}
-          <div className="w-full h-full flex flex-col md:flex-row items-center justify-between">
-
-            {/* Image + Video */}
+        {/* THREE PROJECT ROWS */}
+        <div className="flex-1 min-h-0 w-full grid grid-rows-2 md:grid-rows-2 gap-[1.5vh]">
+          {projects.map((project) => (
             <div
-              className="w-full md:w-[45%] h-full relative group overflow-hidden opacity-50 trail-text"
-              onMouseEnter={() => isDesktop && videoRef.current?.play()}
-              onMouseLeave={() => isDesktop && videoRef.current?.pause()}
+              key={project.name}
+              className="w-full h-full min-h-0 flex flex-col md:flex-row items-center justify-between gap-2 md:gap-[3%]"
             >
-              <a
-                href="https://audira-nine-eta.vercel.app/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block w-full h-full"
-              >
-                <img
-                  src={headphone}
-                  alt="headphone"
-                  className="w-full h-full object-cover transition-opacity duration-300 group-hover:opacity-0 rounded-3xl"
-                />
-
-                {isDesktop && (
-                  <video
-                    ref={videoRef}
-                    src={preview1}
-                    muted
-                    loop
-                    playsInline
-                    className="absolute top-0 left-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-3xl"
-                  />
-                )}
-         
-              </a>
+              {project.imageFirst ? (
+                <>
+                  {renderPreview(project)}
+                  {renderDescription(project)}
+                </>
+              ) : (
+                <>
+                  {renderDescription(project)}
+                  {renderPreview(project)}
+                </>
+              )}
             </div>
-
-            {/* Text */}
-            <div className="w-full md:w-[45%] h-full flex items-center justify-center text-justify trail-text">
-              <div className="text-l cursor-none">
-                Audira is a modern, fully responsive e-commerce concept built
-                for a fictional premium headphone brand. I designed and
-                developed this project with a strong focus on visual hierarchy,
-                smooth interactions, and clean component structure. The layout
-                adapts seamlessly across devices, ensuring a consistent and
-                engaging user experience.
-
-                This project demonstrates my ability to create attractive,
-                conversion-focused front-end designs that highlight products
-                effectively. From hover interactions to responsive layout
-                systems, every detail was intentionally crafted. My portfolio
-                itself reflects the same approach — interactive, clean, and
-                performance-aware. I am capable of building far more advanced,
-                scalable front-end systems tailored to real business needs.
-              </div>
-            </div>
-          </div>
-
-          {/* ===== SECOND PROJECT ===== */}
-          <div className="w-full h-full flex flex-col md:flex-row items-center justify-between">
-
-            {/* Text */}
-            <div className="w-full md:w-[45%] h-full flex items-center justify-center text-justify trail-text">
-              <div className="text-l cursor-none">
-                This cookie shop project is a responsive product showcase
-                website designed for a small dessert brand offering three
-                signature cookie flavors. The goal was to create a warm,
-                inviting interface while maintaining modern UI principles and
-                clean structure.
-
-                I developed the layout to be fully responsive and optimized for
-                clarity and engagement across all screen sizes. The design
-                focuses on presentation, brand personality, and user-friendly
-                navigation — elements essential for businesses looking to build
-                an online presence. This project further reflects my ability to
-                craft visually appealing and strategically structured
-                front-end experiences that attract and retain clients.
-              </div>
-            </div>
-
-            {/* Image + Video */}
-            <div
-              className="w-full md:w-[45%] h-full relative group overflow-hidden opacity-50 trail-text"
-              onMouseEnter={() => isDesktop && videoRef2.current?.play()}
-              onMouseLeave={() => isDesktop && videoRef2.current?.pause()}
-            >
-              <a
-                href="https://cookie-co.vercel.app/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block w-full h-full"
-              >
-                <img
-                  src={cookie}
-                  alt="cookie"
-                  className="w-full h-full object-cover transition-opacity duration-300 group-hover:opacity-0 rounded-3xl"
-                />
-
-                {isDesktop && (
-                  <video
-                    ref={videoRef2}
-                    src={preview2}
-                    muted
-                    loop
-                    playsInline
-                    className="absolute top-0 left-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-3xl"
-                  />
-                )}
-              </a>
-            </div>
-          </div>
-
+          ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
 export default SecondVh;
+```
