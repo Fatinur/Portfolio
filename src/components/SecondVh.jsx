@@ -1,4 +1,4 @@
-```jsx
+
 import React, { useRef, useEffect, useState } from "react";
 
 import preview1 from "../assets/previewHeadphone.mp4";
@@ -9,8 +9,8 @@ import preview2 from "../assets/previewCookie.mp4";
 // RAJSHAHI RENTALS ASSETS:
 // When ready, import your screenshot and video here.
 // Example:
-// import rajshahiRentals from "../assets/rajshahi-rentals.png";
-// import preview3 from "../assets/previewRajshahiRentals.mp4";
+ import rajshahiRentals from "../assets/rajshahi-rentals.png";
+ import preview3 from "../assets/previewRajshahiRentals.mp4";
 
 const SecondVh = () => {
   const [isDesktop, setIsDesktop] = useState(false);
@@ -56,17 +56,17 @@ const SecondVh = () => {
 
     // RAJSHAHI RENTALS:
     // Add image and video imports above, then uncomment this project.
-    // {
-    //   name: "RAJSHAHI RENTALS",
-    //   description:
-    //     "A rental platform built for Rajshahi, helping people discover rooms, flats, and hostels through property filters and a streamlined listing experience.",
-    //   image: rajshahiRentals,
-    //   video: preview3,
-    //   videoRef: videoRef3,
-    //   url: "https://rajshahi-rentals.vercel.app/",
-    //   imageAlt: "Rajshahi Rentals website",
-    //   imageFirst: true,
-    // },
+    {
+     name: "RAJSHAHI RENTALS",
+     description:
+        "A rental platform built for Rajshahi, helping people discover rooms, flats, and hostels through property filters and a streamlined listing experience.",
+      image: rajshahiRentals,
+       video: preview3,
+     videoRef: videoRef3,
+      url: "https://rajshahi-rentals.vercel.app/",
+     imageAlt: "Rajshahi Rentals website",
+    imageFirst: true,
+   },
   ];
 
   const renderPreview = (project) => (
