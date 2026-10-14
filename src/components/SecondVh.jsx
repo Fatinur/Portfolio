@@ -5,19 +5,13 @@ import preview1 from "../assets/previewHeadphone.mp4";
 import headphone from "../assets/audira.png";
 import cookie from "../assets/cookie.png";
 import preview2 from "../assets/previewCookie.mp4";
-
-// RAJSHAHI RENTALS ASSETS:
-// When ready, import your screenshot and video here.
-// Example:
- import rajshahiRentals from "../assets/rajshahi-rentals.png";
- import preview3 from "../assets/previewRajshahiRentals.mp4";
+import rajshahiRentals from "../assets/rajshahi-rentals.png";
 
 const SecondVh = () => {
   const [isDesktop, setIsDesktop] = useState(false);
 
   const videoRef = useRef(null);
   const videoRef2 = useRef(null);
-  const videoRef3 = useRef(null);
 
   useEffect(() => {
     const checkWidth = () => {
@@ -53,34 +47,27 @@ const SecondVh = () => {
       imageAlt: "Cookie.co website",
       imageFirst: false,
     },
-
-    // RAJSHAHI RENTALS:
-    // Add image and video imports above, then uncomment this project.
     {
-     name: "RAJSHAHI RENTALS",
-     description:
+      name: "RAJSHAHI RENTALS",
+      description:
         "A rental platform built for Rajshahi, helping people discover rooms, flats, and hostels through property filters and a streamlined listing experience.",
       image: rajshahiRentals,
-       video: preview3,
-     videoRef: videoRef3,
       url: "https://rajshahi-rentals.vercel.app/",
-     imageAlt: "Rajshahi Rentals website",
-    imageFirst: true,
-   },
+      imageAlt: "Rajshahi Rentals website",
+      imageFirst: true,
+    },
   ];
 
   const renderPreview = (project) => (
     <div
       className="w-full md:w-[42%] h-full min-h-0 relative group overflow-hidden opacity-70 hover:opacity-100 transition-opacity duration-300 trail-text rounded-2xl"
       onMouseEnter={() => {
-        if (isDesktop) project.videoRef.current?.play();
+        if (isDesktop) project.videoRef?.current?.play();
       }}
       onMouseLeave={() => {
-        if (isDesktop) {
-          project.videoRef.current?.pause();
-          if (project.videoRef.current) {
-            project.videoRef.current.currentTime = 0;
-          }
+        if (isDesktop && project.videoRef?.current) {
+          project.videoRef.current.pause();
+          project.videoRef.current.currentTime = 0;
         }
       }}
     >
@@ -94,10 +81,14 @@ const SecondVh = () => {
         <img
           src={project.image}
           alt={project.imageAlt}
-          className="w-full h-full object-cover transition-opacity duration-300 group-hover:opacity-0"
+          className={`w-full h-full object-cover transition-opacity duration-300 ${
+            project.video && isDesktop
+              ? "group-hover:opacity-0"
+              : ""
+          }`}
         />
 
-        {isDesktop && (
+        {project.video && isDesktop && (
           <video
             ref={project.videoRef}
             src={project.video}
@@ -151,7 +142,7 @@ const SecondVh = () => {
         </div>
 
         {/* THREE PROJECT ROWS */}
-        <div className="flex-1 min-h-0 w-full grid grid-rows-2 md:grid-rows-2 gap-[1.5vh]">
+        <div className="flex-1 min-h-0 w-full grid grid-rows-3 gap-[1.5vh]">
           {projects.map((project) => (
             <div
               key={project.name}
@@ -177,4 +168,4 @@ const SecondVh = () => {
 };
 
 export default SecondVh;
-```
+
