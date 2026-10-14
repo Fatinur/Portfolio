@@ -1,182 +1,244 @@
-import React, { useEffect, useRef } from "react";
+
+
+
+import React, { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import headphone from "../assets/audira.png";
 import cookie from "../assets/cookie.png";
+import rajshahiRentals from "../assets/rajshahi-rentals.png";
+
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
 
 gsap.registerPlugin(ScrollTrigger);
 
-const MobileProjectsFullscreen = () => {
-  const containerRef = useRef(null);
+const projects = [
+  {
+    name: "AUDIRA",
+    description:
+      "A premium headphone storefront concept featuring immersive product visuals and smooth interactions to help brands create a strong first impression.",
+    image: headphone,
+    url: "https://audira-nine-eta.vercel.app/",
+    alt: "Audira headphone storefront",
+  },
+  {
+    name: "COOKIE.CO",
+    description:
+      "A modern cookie shop concept combining warm branding, appealing product presentation, and intuitive navigation to help small businesses build a memorable online presence.",
+    image: cookie,
+    url: "https://cookie-co.vercel.app/",
+    alt: "Cookie.co website",
+  },
+  {
+    name: "RAJSHAHI RENTALS",
+    description:
+      "A rental platform built for Rajshahi, helping people discover rooms, flats, and hostels through property filters and a streamlined listing experience.",
+    image: rajshahiRentals,
+    url: "https://rajshahi-rentals.vercel.app/",
+    alt: "Rajshahi Rentals website",
+  },
+];
 
+const MobileProjectsFullscreen = () => {
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const containerRef = useRef(null);
+  const cardRef = useRef(null);
+  const touchStartX = useRef(null);
+
+  // Animate the section into view and clean up on unmount.
   useEffect(() => {
     const ctx = gsap.context(() => {
-
-      // ===== PROJECT 1 TIMELINE =====
-      gsap.from("#project", {
-
-            scrollTrigger: {
-                trigger: ".section-1",
-                start: "top 80%",
-                end: "top 20%",
-                scrub: true,
-               
-            },
-          opacity: 0,
-        y: -100,
-        duration: 1,
-        yoyo: true,
-        ease: "power3.out",
-      });
-        gsap.from(".image-1", {
-            scrollTrigger: {
-                trigger: ".section-1",
-                start: "top 60%",
-                end: "bottom bottom",
-                scrub: true,
-            },
-            opacity: 0,
-            y: 90,
-            
-            ease: "power3.out",
-        });
-
-        gsap.from("#text-1", {
-            scrollTrigger: {
-                trigger: "#text-1",
-                start: "top 80%",
-                end: "top 30%",
-                 scrub: true,
-            },
-            opacity: 0,
-            y: 60,
-            duration: 1,
-           
-            ease: "power3.out",
-        }, );
-
-    
-
-
-
-      // ===== PROJECT 2 TIMELINE =====
-        gsap.from(".image-2", {
-            scrollTrigger: {
-                trigger: ".cooky",
-                start: "top 95%",
-                end: "top 50%",
-                scrub: true,
-            },
-            opacity: 0,
-            y: 90,
-            ease: "power3.out",
-        });
-
-        gsap.from(".text-2", {
-            scrollTrigger: {
-                trigger: ".text-2",
-                start: "top 80%",
-                end: "top 30%",
-                    scrub: true,
-            },
-            opacity: 0,
-            y: 60,
-            duration: 1,
-            ease: "power3.out",
-        });
-
+      gsap.fromTo(
+        ".mobile-projects-heading",
+        { opacity: 0, y: -30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top 85%",
+            toggleActions: "play none none reverse",
+          },
+        }
+      );
     }, containerRef);
 
     return () => ctx.revert();
   }, []);
 
+  // Animate the card when the selected project changes.
+  useEffect(() => {
+    if (!cardRef.current) return;
+
+    gsap.fromTo(
+      cardRef.current,
+      { opacity: 0, y: 16 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.35,
+        ease: "power2.out",
+      }
+    );
+  }, [activeIndex]);
+
+  const goToProject = (index) => {
+    setActiveIndex((index + projects.length) % projects.length);
+  };
+
+  const handleTouchStart = (event) => {
+    touchStartX.current = event.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (event) => {
+    if (touchStartX.current === null) return;
+
+    const difference =
+      event.changedTouches[0].clientX - touchStartX.current;
+
+    if (Math.abs(difference) > 50) {
+      if (difference < 0) {
+        goToProject(activeIndex + 1);
+      } else {
+        goToProject(activeIndex - 1);
+      }
+    }
+
+    touchStartX.current = null;
+  };
+
+  const project = projects[activeIndex];
+
   return (
-    <div ref={containerRef} className="w-full overflow-x-hidden ">
+    <section
+      ref={containerRef}
+      className="h-screen w-full overflow-hidden flex flex-col items-center justify-center px-5 text-white"
+    >
+      {/* Heading */}
+      <h2
+        className="mobile-projects-heading shrink-0 mb-5 text-4xl font-bold text-transparent"
+        style={{ WebkitTextStroke: "1px white" }}
+      >
+        PROJECTS
+      </h2>
 
-      {/* ================= FIRST SCREEN ================= */}
-      <section className="section-1 h-screen flex flex-col justify-center items-center px-8 relative gap-[4vh]">
-
-        <div
-          className=" text-transparent text-5xl font-bold"
-          style={{ WebkitTextStroke: "1px white" }} id="project"
-        >
-          PROJECTS
-        </div>
-
-        <div className="flex flex-col items-center gap-12">
-
-          <a
-            href="https://audira-nine-eta.vercel.app/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="image-1"
-          >
-            <img
-              src={headphone}
-              alt="headphone"
-              className="w-[85vw] max-w-sm rounded-3xl shadow-2xl"
-            />
-          </a>
-
-          <div className="text-1 text-[16px] leading-relaxed text-justify max-w-md" id="text-1">
-           <div> Audira is a modern, fully responsive e-commerce concept built
-                for a fictional premium headphone brand. I designed and
-                developed this project with a strong focus on visual hierarchy,
-                smooth interactions, and clean component structure. The layout
-                adapts seamlessly across devices, ensuring a consistent and
-                engaging user experience.</div>
-
-               <div className=""> This project demonstrates my ability to create attractive,
-                conversion-focused front-end designs that highlight products
-                effectively. From hover interactions to responsive layout
-                systems, every detail was intentionally crafted. My portfolio
-                itself reflects the same approach — interactive, clean, and
-                performance-aware. I am capable of building far more advanced,
-                scalable front-end systems tailored to real business needs.</div>
-          </div>
-
-        </div>
-      </section>
-
-
-      {/* ================= SECOND SCREEN ================= */}
-      <section className="section-2 h-screen flex flex-col justify-center items-center px-8 py-16 gap-[6vh]">
-
-        {/* Upper Portion Image */}
+      {/* Carousel card */}
+      <div
+        ref={cardRef}
+        className="w-full max-w-md rounded-3xl border border-white/10 bg-white/[0.04] p-4 shadow-2xl"
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+      >
+        {/* Project preview */}
         <a
-          href="https://cookie-co.vercel.app/"
+          href={project.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="image-2 mt-6"
+          aria-label={`Visit ${project.name} website`}
+          className="block overflow-hidden rounded-2xl"
         >
           <img
-            src={cookie}
-            alt="cookie"
-            className="w-[85vw] max-w-sm rounded-3xl shadow-2xl cooky"
+            src={project.image}
+            alt={project.alt}
+            draggable="false"
+            className="aspect-[5/3] w-full object-cover"
           />
         </a>
 
-        {/* Lower Text */}
-        <div className="text-2 text-[16px] leading-relaxed text-justify max-w-md mb-10">
-        <div className=""> <b> Visit</b> my cookie shop project .It's a responsive product showcasing a
-                website designed for a small dessert brand offering three
-                signature cookie flavors. The goal was to create a warm,
-                inviting interface while maintaining modern UI principles and
-                clean structure.</div>
+        {/* Project details */}
+        <div className="flex flex-col gap-3 pt-4">
+          <div className="flex items-center justify-between gap-3">
+            <h3 className="text-lg font-semibold tracking-[0.15em]">
+              {project.name}
+            </h3>
 
-              <div>I developed the layout to be fully responsive and optimized for
-                clarity and engagement across all screen sizes. The design
-                focuses on presentation, brand personality, and user-friendly
-                navigation — elements essential for businesses looking to build
-                an online presence. This project further reflects my ability to
-                craft visually appealing and strategically structured
-                front-end experiences that attract and retain clients.</div> 
+            <span className="shrink-0 text-xs text-white/50">
+              {String(activeIndex + 1).padStart(2, "0")} /{" "}
+              {String(projects.length).padStart(2, "0")}
+            </span>
+          </div>
+
+          <p className="text-sm leading-relaxed text-white/75">
+            {project.description}
+          </p>
+
+          <a
+            href={project.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-1 w-fit text-xs font-medium tracking-wider underline underline-offset-4 transition-colors hover:text-white/60"
+          >
+            VISIT PROJECT ↗
+          </a>
+        </div>
+      </div>
+
+      {/* Carousel controls */}
+      <div className="mt-5 flex items-center justify-center gap-6">
+        <button
+          type="button"
+          onClick={() => goToProject(activeIndex - 1)}
+          aria-label="Previous project"
+          className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 transition-colors hover:bg-white/10"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            width="20"
+            height="20"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.8"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+          >
+            <path d="m15 18-6-6 6-6" />
+          </svg>
+        </button>
+
+        <div className="flex items-center gap-2" aria-label="Choose project">
+          {projects.map((item, index) => (
+            <button
+              key={item.name}
+              type="button"
+              onClick={() => goToProject(index)}
+              aria-label={`Show ${item.name}`}
+              aria-current={activeIndex === index ? "step" : undefined}
+              className={`h-2 rounded-full transition-all duration-300 ${
+                activeIndex === index
+                  ? "w-6 bg-white"
+                  : "w-2 bg-white/30 hover:bg-white/60"
+              }`}
+            />
+          ))}
         </div>
 
-      </section>
-
-    </div>
+        <button
+          type="button"
+          onClick={() => goToProject(activeIndex + 1)}
+          aria-label="Next project"
+          className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 transition-colors hover:bg-white/10"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            width="20"
+            height="20"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.8"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+          >
+            <path d="m9 18 6-6-6-6" />
+          </svg>
+        </button>
+      </div>
+    </section>
   );
 };
 
