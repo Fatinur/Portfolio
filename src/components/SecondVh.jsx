@@ -1,4 +1,4 @@
-```jsx
+
 import React, { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 
@@ -373,5 +373,5 @@ const SecondVh = () => {
 };
 
 export default SecondVh;
-```
+
 
