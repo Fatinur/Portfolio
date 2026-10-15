@@ -122,12 +122,12 @@ const SecondVh = () => {
           {/* Project details */}
           <div className="mt-[2vh] flex w-full items-start justify-between gap-4 md:w-[82%] lg:w-[76%]">
             <div className="min-w-0 flex-1">
-              <h3 className="break-words text-xl font-semibold tracking-[-0.04em] sm:text-2xl md:text-3xl lg:text-4xl">
+              <h3 className="break-words text-xl font-semibold tracking-[-0.04em] sm:text-2xl md:text-3xl lg:text-4xl"  style={{ WebkitTextStroke: "1px white" }}>
                 {activeProject.name}
-                <span className="text-white/35">.</span>
+                <span className="text-white/35"  style={{ WebkitTextStroke: "1px white" }}>.</span>
               </h3>
 
-              <p className="mt-2 max-w-2xl text-xs leading-relaxed text-white/65 sm:text-sm md:mt-3 md:text-base trail-text">
+              <p className="mt-2 max-w-2xl text-xs leading-relaxed text-white/65 sm:text-sm md:mt-3 md:text-base ">
                 {activeProject.description}
               </p>
 
