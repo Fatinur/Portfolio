@@ -19,7 +19,7 @@ const projects = [
    {
     name: "RAJSHAHI RENTALS",
     category: "RENTAL PLATFORM",
-    number: "01",
+    number: "02",
     description:
       "A rental platform built for Rajshahi, helping people discover rooms, flats, and hostels through practical filters and accessible listings.",
     image: rajshahiRentals,
@@ -29,7 +29,7 @@ const projects = [
   {
     name: "AUDIRA",
     category: "E-COMMERCE",
-    number: "02",
+    number: "03",
     description:
       "A premium storefront that helps brands showcase products through immersive visuals and a seamless shopping experience.",
     image: headphone,
@@ -39,7 +39,7 @@ const projects = [
   {
     name: "COOKIE.CO",
     category: "FOOD & E-COMMERCE",
-    number: "03",
+    number: "04",
     description:
       "A modern online storefront that helps small businesses present their products beautifully and create a memorable brand experience.",
     image: cookie,
