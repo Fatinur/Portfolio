@@ -1,11 +1,21 @@
 
 import React, { useState } from "react";
-
+import mgauto from "../asssets/mgauto.png"
 import headphone from "../assets/audira.png";
 import cookie from "../assets/cookie.png";
 import rajshahiRentals from "../assets/rajshahi-rentals.png";
 
 const projects = [
+    {
+    name: "M&G Auto Repair",
+    category: "Customer Retention",
+    number: "01",
+    description:
+      "A website that catches customers , Helps them contact the owner easily . It also helps the owner manage the business easier than before",
+    image: mgauto,
+    imageAlt: "mg auto website",
+    url: "https://mg-auto-repair.vercel.app/",
+  },
    {
     name: "RAJSHAHI RENTALS",
     category: "RENTAL PLATFORM",
