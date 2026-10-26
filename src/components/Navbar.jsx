@@ -58,7 +58,7 @@ const Navbar = ({refs}) => {
         
             <div className="front-end cursor-pointer text-transparent font-extrabold  md:text-[3vw]  text-[7vw] w-[50vw] trail-text "
             style={{ WebkitTextStroke: "1px white" }}>
-              FRONTEND  DEVELOPER
+              WEB  DEVELOPER
             </div>
 
             <div className="cursor-pointer text-white trail-text relative  hambug" onClick={toggleMenu}>
