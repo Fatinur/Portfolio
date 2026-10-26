@@ -61,8 +61,13 @@ const AboutMobile = () => {
           I Am<br/> Arnob
         </div>
         <div className='font-pinyon text-xl second-come'> 
-          I’m a frontend developer who enjoys building modern, interactive websites and bringing designs to life through code. I work with React, JavaScript, Tailwind CSS, and CSS to create responsive and visually engaging interfaces, and I particularly enjoy crafting smooth animations using GSAP.<br/>
-          I’m currently seeking internships, freelance opportunities, or entry-level frontend roles where I can grow, contribute, and gain real-world experience. I believe strongly in persistence and continuous learning—because if you want something, go get it. Period.
+         I’m a junior full-stack web developer who enjoys building modern, interactive websites and turning ideas into functional digital experiences.
+
+I work with React, JavaScript, Tailwind CSS, and Supabase to build responsive interfaces and full-stack projects. I’m particularly passionate about creating smooth, engaging animations with GSAP and crafting experiences that look great and feel intuitive to use.
+
+I’m looking for opportunities in freelance work, internships, and entry-level development roles where I can solve real problems, contribute to meaningful projects, and keep growing as a developer.
+
+I believe in persistence, taking action, and continuous learning. As the character played by Will Smith says in *The Pursuit of Happyness*: “If you want something, go get it. Period.”
         </div>
       </div>
       <div className='third-come w-full h-full flex justify-center items-center'>
