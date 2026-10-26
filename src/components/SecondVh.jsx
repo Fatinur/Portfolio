@@ -1,21 +1,21 @@
 
 import React, { useState } from "react";
-import mgauto from "../asssets/mgauto.png"
+import mgauto from "../assets/mgauto.png";
 import headphone from "../assets/audira.png";
 import cookie from "../assets/cookie.png";
 import rajshahiRentals from "../assets/rajshahi-rentals.png";
 
 const projects = [
-    {
-    name: "M&G Auto Repair",
-    category: "Customer Retention",
-    number: "01",
-    description:
-      "A website that catches customers , Helps them contact the owner easily . It also helps the owner manage the business easier than before",
-    image: mgauto,
-    imageAlt: "mg auto website",
-    url: "https://mg-auto-repair.vercel.app/",
-  },
+  {
+  name: "M&G Auto Repair",
+  category: "BUSINESS WEBSITE",
+  number: "01",
+  description:
+    "A conversion-focused website designed to help customers explore services, contact the shop, and request auto repairs with ease.",
+  image: mgauto,
+  imageAlt: "M&G Auto Repair website preview",
+  url: "https://mg-auto-repair.vercel.app/",
+},
    {
     name: "RAJSHAHI RENTALS",
     category: "RENTAL PLATFORM",
@@ -71,7 +71,7 @@ const SecondVh = () => {
           </span>
 
           <span className="text-[9px] tracking-[0.15em] text-white/45 md:text-xs">
-            INDEPENDENT WEB DEVELOPER
+            JUNIOR FULL-STACK DEVELOPER
           </span>
         </header>
 
@@ -92,19 +92,18 @@ const SecondVh = () => {
             </h2>
           </div>
 
-          <span className="pb-1 text-xs tracking-widest text-white/70 md:text-sm">
-            {activeProject.number}
-            <span className="mx-1 text-white/30">/</span>
-            03
-          </span>
+                     <span className="pb-1 text-xs tracking-widest text-white/70 md:text-sm">
+              {activeProject.number}
+              <span className="mx-1 text-white/30">/</span>
+              {String(projects.length).padStart(2, "0")}
+            </span>
         </div>
 
         {/* Center stage */}
-        <div
-          key={activeProject.name}
-          className="flex min-h-0 flex-1 flex-col items-center justify-center trail-text"
-          style={{ WebkitTextStroke: "1px white" }}
-        >
+            <div
+              key={activeProject.name}
+              className="flex min-h-0 flex-1 flex-col items-center justify-center"
+            >
           {/* Project image */}
           <a
             href={activeProject.url}
