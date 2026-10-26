@@ -6,10 +6,20 @@ import cookie from "../assets/cookie.png";
 import rajshahiRentals from "../assets/rajshahi-rentals.png";
 
 const projects = [
+   {
+    name: "RAJSHAHI RENTALS",
+    category: "RENTAL PLATFORM",
+    number: "01",
+    description:
+      "A rental platform built for Rajshahi, helping people discover rooms, flats, and hostels through practical filters and accessible listings.",
+    image: rajshahiRentals,
+    imageAlt: "Rajshahi Rentals website",
+    url: "https://rajshahi-rentals.vercel.app/",
+  },
   {
     name: "AUDIRA",
     category: "E-COMMERCE",
-    number: "01",
+    number: "02",
     description:
       "A premium storefront that helps brands showcase products through immersive visuals and a seamless shopping experience.",
     image: headphone,
@@ -19,23 +29,14 @@ const projects = [
   {
     name: "COOKIE.CO",
     category: "FOOD & E-COMMERCE",
-    number: "02",
+    number: "03",
     description:
       "A modern online storefront that helps small businesses present their products beautifully and create a memorable brand experience.",
     image: cookie,
     imageAlt: "Cookie.co website",
     url: "https://cookie-co.vercel.app/",
   },
-  {
-    name: "RAJSHAHI RENTALS",
-    category: "RENTAL PLATFORM",
-    number: "03",
-    description:
-      "A rental platform built for Rajshahi, helping people discover rooms, flats, and hostels through practical filters and accessible listings.",
-    image: rajshahiRentals,
-    imageAlt: "Rajshahi Rentals website",
-    url: "https://rajshahi-rentals.vercel.app/",
-  },
+ 
 ];
 
 const SecondVh = () => {
